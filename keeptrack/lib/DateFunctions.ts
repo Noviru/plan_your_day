@@ -161,8 +161,3 @@ export function check_date(date: string): boolean {
         return false;
     }
 }
-
-
-
-
-
