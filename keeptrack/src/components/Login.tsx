@@ -2,11 +2,21 @@ import React from 'react';
 import {useNavigate} from "react-router-dom"
 import Register from "./Register";
 import { useState } from 'react';
+import { user } from '../../lib/types';
 
+const users: Array<user> = [];
 
 function validate_login(username: String, password: String): boolean{
-  return true;
+  const len = users.length 
+  for (let i = 0; i < len; i = i + 1) {
+    let current_user = users[i]
+    if (username === current_user.name && password === current_user.password) {
+      return true;
+    }  
+  }
+  return false; 
 }
+
 const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
