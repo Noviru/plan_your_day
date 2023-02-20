@@ -11,7 +11,6 @@ const Login = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
