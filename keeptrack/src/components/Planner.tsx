@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Activity } from './activities';
+import { Activity } from '../activities';
 import './App.css';
-import ActivityInput from './components/ActivityInput';
-import ActivityList from './components/ActivityList';
+import ActivityInput from '../components/ActivityInput';
+import ActivityList from '../components/ActivityList';
 
 const App: React.FC = () => {
   const [activity, setActivity] = useState<string>("");

@@ -1,0 +1,34 @@
+.todos {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.activities_single {
+    display: flex;
+    width: 50%;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 15px;
+    background-color: gray;
+    align-items: center;
+}
+
+.singleactivity_text {
+    flex: 1;
+    padding: 5px;
+    border: none;
+    font-size: 20px;
+}
+
+.icon {
+    margin-left: 10px;
+    font-size: 25px;
+    cursor:pointer;  
+}
+
+.icons {
+    width:40%;
+    float:right;
+}
