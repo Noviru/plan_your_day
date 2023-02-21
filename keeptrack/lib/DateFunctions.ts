@@ -161,3 +161,19 @@ export function check_date(date: string): boolean {
         return false;
     }
 }
+
+/**
+ * Turns a date string into a number
+ * 
+ * @param date - date string of format "YYYY-MM-DD"
+ * @returns - a number of format YYYYMMDD
+ */
+export function date_to_number(date: string): number {
+    const split_date: Array<string> = date.split("-", 3);
+    const year: string = split_date[0];
+    const month: string = split_date[1];
+    const day: string = split_date[2];
+    const number_string: string = year + month + day;
+    return Number(number_string);
+}
+

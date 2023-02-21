@@ -1,4 +1,4 @@
-import { check_year, day_in_month, check_date, date_has_passed, current_year, current_month, current_day } from "./DateFunctions";  
+import { check_year, day_in_month, check_date, date_has_passed, current_year, current_month, current_day, date_to_number } from "./DateFunctions";  
 
 describe('Tests for the correct_year function', () => {
     test('If year is a year between current year and 2099 return true', () => {
@@ -86,5 +86,11 @@ describe('Tests for the check_date function', () => {
     test('Random string returns false', () => {
         const ran_string: string = "i191i09-1i-019";
         expect(check_date(ran_string)).toBe(false);
+    })
+})
+
+describe('Tests for date_to_number function', () => {
+    test('Input date turns into correct number', () => {
+        expect(date_to_number("2023-02-02")).toBe(20230202)
     })
 })
