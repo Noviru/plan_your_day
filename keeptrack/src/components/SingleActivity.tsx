@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import {AiFillDelete, AiFillEdit} from 'react-icons/ai'
 import {MdDone} from 'react-icons/md'
-import { activity } from '../../lib/types'
+import { activity } from '../lib/types'
 
 type Properties = {
     activity: Activity,

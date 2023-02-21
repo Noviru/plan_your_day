@@ -1,7 +1,7 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom"
 import { useState } from 'react';
-import { user, activity } from '../../lib/types';
+import { user, activity } from '../lib/types';
 
 import * as fs from 'fs';
 

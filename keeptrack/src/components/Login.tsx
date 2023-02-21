@@ -2,7 +2,8 @@ import React from 'react';
 import {useNavigate} from "react-router-dom"
 import Register from "./Register";
 import { useState } from 'react';
-import { user } from '../../lib/types';
+import { user } from '../lib/types';
+import * as sqlite3 from 'sqlite3';
 
 const users: Array<user> = [];
 
@@ -25,7 +26,7 @@ const Login = () => {
   const handleSubmit = (event: any) => {
     event.preventDefault();
     setUsername(username);
-    setPassword(password); 
+    setPassword(password);
   };
   return (
       <>

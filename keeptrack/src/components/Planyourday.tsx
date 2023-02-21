@@ -1,5 +1,5 @@
 import {useNavigate} from "react-router-dom"
-
+import { check_date } from "../lib/DateFunctions"
 import React, { useState } from 'react';
 import { Activity } from './SingleActivity';
 import '../App.css';
@@ -13,7 +13,7 @@ const Planyourday: React.FC = () => {
 
   const addActivity = (e: React.FormEvent) => {
     e.preventDefault(); // Prevents page-refresh on every submit
-    if(activity && date){
+    if(activity && date && check_date(date)){
       setActivities([...activities, {id: Date.now(), todo:activity, date: date, isCompleted: false}]);
       setActivity("");
       setDate("");
@@ -24,7 +24,7 @@ const Planyourday: React.FC = () => {
 
   return (
       <div className="App">
-        <span className = "heading">Plan your day </span>
+        <span className = "heading">PlanYourDay </span>
       <ActivityInput activity={activity} setActivity={setActivity} date={date} setDate={setDate} addActivity={addActivity} />
       <div className="activity-title">
         <h2>Activities</h2>
