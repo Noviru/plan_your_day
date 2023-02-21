@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import {AiFillDelete, AiFillEdit} from 'react-icons/ai'
 import {MdDone} from 'react-icons/md'
+import { activity } from '../../lib/types'
 
 type Properties = {
     activity: Activity,
+    date: string,
     activities: Activity[],
     setActivities: React.Dispatch<React.SetStateAction<Activity[]>>
 }
@@ -11,6 +13,7 @@ type Properties = {
 export interface Activity{
     id: number,
     todo: string,
+    date: string, 
     isCompleted: boolean
 }
 
@@ -25,21 +28,30 @@ const SingleActivity : React.FC<Properties>= ({activity, activities, setActiviti
         ))
     };
    
-  return <form className='activities_single'>
-    {activity.isCompleted ?(
-        <s className="singleactivity_text">{activity.todo}</s>
-    ):(
-        <span className="singleactivity_text">{activity.todo}</span>
+  return (
+  <form className="activity">
+    {activity.isCompleted ? (
+      <div className="activity-text">
+        <s className="activity-todo">{activity.todo}</s>
+        <s className="activity-date">{activity.date}</s>
+      </div>
+    ) : (
+      <div className="activity-text">
+        <span className="activity-todo">{activity.todo}</span>
+        <span className="activity-date">{activity.date}</span>
+      </div>
     )}
-        <div className='icons'>
-            <span className="icon" onClick={()=> deleteActivity(activity.id)}>
-                <AiFillDelete/>
-            </span>
-            <span className="icon" onClick={()=> markAsCompleted(activity.id)}>
-                <MdDone/>
-            </span>
-        </div>
-    </form>
+    <div className="activity-icons">
+      <span className="activity-icon" onClick={() => deleteActivity(activity.id)}>
+        <AiFillDelete />
+      </span>
+      <span className="activity-icon" onClick={() => markAsCompleted(activity.id)}>
+        <MdDone />
+      </span>
+    </div>
+  </form>
+);
+
 }
 
 export default SingleActivity

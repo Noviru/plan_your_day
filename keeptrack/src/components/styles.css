@@ -1,34 +1,118 @@
-.todos {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-    flex-wrap: wrap;
+html {
+    box-sizing: border-box;
+    font-size: 10px;
 }
 
-.activities_single {
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-image: radial-gradient(circle at 0% 0%,
+            #373b52,
+            #252736 51%,
+            #1d1e26);
+}
+
+.Input {
     display: flex;
-    width: 50%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px;
+}
+
+.input_activity_field {
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid #ccc;
     border-radius: 5px;
-    padding: 20px;
-    margin-top: 15px;
-    background-color: gray;
+    margin-right: 10px;
+    width: 40%;
+    box-sizing: border-box;
+}
+
+.submit {
+    background-color: #4caf50;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    height: 44px;
+    width: auto;
+    position: relative;
+    display: flex;
     align-items: center;
 }
 
-.singleactivity_text {
+.submit:active {
+    background-color: #357a38;
+}
+
+form.activity {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    width: 50%;
+    margin: 20px auto;
+}
+
+.activity-date {
+    margin-left: auto;
+}
+
+.activity-icons {
+    display: flex;
+    align-items: center;
+    margin-right: 16px;
+}
+
+.activity-text {
     flex: 1;
-    padding: 5px;
-    border: none;
-    font-size: 20px;
+    margin-right: 16px;
 }
 
-.icon {
-    margin-left: 10px;
-    font-size: 25px;
-    cursor:pointer;  
+.activity-text span,
+.activity-text s {
+    font-size: 16px;
+    font-weight: 500;
 }
 
-.icons {
-    width:40%;
-    float:right;
+.activity-todo {
+    color: #212529;
+}
+
+.activity-icon {
+    cursor: pointer;
+    margin-left: 8px;
+}
+
+.activity-icon svg {
+    height: 24px;
+    width: 24px;
+}
+
+.activity-title {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+}
+
+.activity-title h2 {
+    font-size: 36px;
+    font-weight: normal;
+    margin-bottom: 8px;
+}
+
+.activity-title-underline {
+    height: 5px;
+    background: linear-gradient(to right, #4caf50 0%, #357a38 100%);
+    width: 80%;
+    margin: 0 auto 20px auto;
 }

@@ -14,10 +14,11 @@ const ActivityList: React.FC<Properties>= ({activities, setActivities}: Properti
     <div className='todos'>
       {activities.map((activity) => (
         <SingleActivity 
-            activity={activity} 
-            key={activity.id} 
-            activities={activities}
-            setActivities={setActivities}
+          activity={activity} 
+          date={activity.date}
+          key={activity.id} 
+          activities={activities}
+          setActivities={setActivities}
         />
 
       ))}
