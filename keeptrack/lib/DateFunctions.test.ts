@@ -74,7 +74,7 @@ describe('Tests for the check_date function', () => {
     })
 
     test('Wrong format date returns false', () => {
-        const incorrect_date: string = "20230502";
+        const incorrect_date: string = "2023_05_02";
         expect(check_date(incorrect_date)).toBe(false);
     })
 
