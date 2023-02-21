@@ -2,7 +2,7 @@ import React from 'react';
 import {useNavigate} from "react-router-dom"
 import Register from "./Register";
 import { useState } from 'react';
-import { user } from '../lib/types';
+import { user } from '../../lib/types';
 
 const users: Array<user> = [];
 

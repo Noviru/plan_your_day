@@ -1,8 +1,8 @@
 import React from 'react';
 import {useNavigate} from "react-router-dom"
 import { useState } from 'react';
-import { user, activity } from '../lib/types';
-import { List,list } from '../lib/list';
+import { user, activity } from '../../lib/types';
+
 import * as fs from 'fs';
 
 const JSON_PATH: string = "../../users"
@@ -15,8 +15,8 @@ function write_to_json(user: user): void{
 function validate_reg(username: string, password: string, password_conf: string){
     if(password === password_conf){
         // Kryptera lösenord eventuellt
-        const empty_list: List<activity> = list();
-        const user: user = {username: username,password: password, activites: empty_list}
+        //const empty_list: List<activity> = list();
+        //const user: user = {username: username,password: password, activites: empty_list}
 
     }
     else{
