@@ -21,6 +21,7 @@ const Login = () => {
        </form>
        <h1>No Account yet? Sign up here!</h1>
        <button onClick={()=>navigate("/register") }>Register</button>
+       <button onClick={()=>navigate("/planyourday") }>Test button</button>
       </>
   )
 };

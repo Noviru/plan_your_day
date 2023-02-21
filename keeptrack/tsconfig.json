@@ -22,5 +22,5 @@
   },
   "include": [
     "src"
-, "lib/types.ts"  ]
+, "src/lib/types.ts"  ]
 }
