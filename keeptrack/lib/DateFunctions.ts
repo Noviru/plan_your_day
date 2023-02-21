@@ -165,8 +165,8 @@ export function check_date(date: string): boolean {
 /**
  * Turns a date string into a number
  * 
- * @param date 
- * @returns 
+ * @param date - date string of format "YYYY-MM-DD"
+ * @returns - a number of format YYYYMMDD
  */
 export function date_to_number(date: string): number {
     const split_date: Array<string> = date.split("-", 3);
