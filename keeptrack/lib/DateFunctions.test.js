@@ -68,3 +68,8 @@ describe('Tests for the check_date function', function () {
         expect((0, DateFunctions_1.check_date)(ran_string)).toBe(false);
     });
 });
+describe('Tests for date_to_number function', function () {
+    test('Input date turns into correct number', function () {
+        expect((0, DateFunctions_1.date_to_number)("2023-02-02")).toBe(20230202);
+    });
+});
