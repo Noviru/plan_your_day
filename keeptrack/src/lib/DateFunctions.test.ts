@@ -1,5 +1,6 @@
 import { check_year, day_in_month, check_date, date_has_passed, get_current_date_string, date_to_number } from "./DateFunctions";  
 
+
 describe('Tests for the correct_year function', () => {
     test('If year is a year between current year and 2099 return true', () => {
         const in_range_year: string = "2050";
@@ -84,8 +85,9 @@ describe('Tests for the check_date function', () => {
     })
 })
 
-describe('Tests for date_to_number function', () => {
+describe('Test for date_to_number function', () => {
     test('Input date turns into correct number', () => {
         expect(date_to_number("2023-02-02")).toBe(20230202)
     })
 })
+

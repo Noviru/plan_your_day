@@ -192,25 +192,11 @@ function date_to_number(date) {
     return Number(number_string);
 }
 exports.date_to_number = date_to_number;
-function selectionSort(arr) {
-    function swapTwo(list, a, b) {
-        var _a;
-        _a = [list[b], list[a]], list[a] = _a[0], list[b] = _a[1];
-    }
-    var min;
-    for (var i = 0; i < arr.length; i++) {
-        min = i;
-        for (var j = i + 1; j < arr.length; j++) {
-            if (arr[j] < arr[min]) {
-                min = j;
-            }
-        }
-        if (min !== i) {
-            swapTwo(arr, min, i);
-        }
-    }
-    return arr;
-}
+/**
+ *
+ * @param activites
+ * @returns
+ */
 function sort_dates(activites) {
     function swap(arr, index1, index2) {
         var temp = arr[index1];
