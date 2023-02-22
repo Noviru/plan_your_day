@@ -15,7 +15,7 @@ export function sort_dates(activites: Array<Activity>): Array<Activity> {
   let min: number;
   for (let i = 0; i < activites.length; i = i + 1) {
       min = i
-      for (let j = i + 1; j < activites.length; j++) {
+      for (let j = i + 1; j < activites.length; j = j + 1) {
           if (date_to_number(activites[j].date) < date_to_number(activites[min].date)) {
               min = j;
           }
