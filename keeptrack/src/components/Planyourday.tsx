@@ -1,4 +1,3 @@
-import {useNavigate} from "react-router-dom"
 
 import React, { useState } from 'react';
 import { Activity } from './SingleActivity';
@@ -17,6 +16,7 @@ const Planyourday: React.FC = () => {
       setActivities([...activities, {id: Date.now(), todo:activity, date: date, isCompleted: false}]);
       setActivity("");
       setDate("");
+
     }
   };
 

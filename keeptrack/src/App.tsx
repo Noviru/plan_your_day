@@ -5,6 +5,8 @@ import {Routes, Route, Router, BrowserRouter} from "react-router-dom";
 import Login from "./components/Login";
 import Register from './components/Register';
 import Planyourday from './components/Planyourday';
+import Testdata1 from './components/Register';
+
 
 
 
@@ -15,6 +17,7 @@ function App() {
         <Route path="/" element={<Login/>} />
         <Route  path="/register" element={<Register/>}/>
         <Route  path="/planyourday" element={<Planyourday/>}/>
+
         
       </Routes>
     </div>
