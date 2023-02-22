@@ -1,3 +1,6 @@
+
+
+
 import {useNavigate} from "react-router-dom"
 import { check_date, date_to_number } from "../lib/DateFunctions"
 import React, { useState } from 'react';
@@ -42,9 +45,13 @@ const Planyourday: React.FC = () => {
       setActivities(sort_dates([...activities, {id: Date.now(), todo:activity, date: date, isCompleted: false}]));
       setActivity("");
       setDate("");
+
+
+
     } else {
       document.getElementById("date-input")?.classList.add("invalid-date");
       setActivities(activities);
+
     }
   };
 
