@@ -1,10 +1,32 @@
 import {useNavigate} from "react-router-dom"
-import { check_date, sort_dates } from "../lib/DateFunctions"
+import { check_date, date_to_number } from "../lib/DateFunctions"
 import React, { useState } from 'react';
 import { Activity } from './SingleActivity';
 import '../App.css';
 import ActivityInput from './ActivityInput';
 import ActivityList from './ActivityList';
+
+
+export function sort_dates(activites: Array<Activity>): Array<Activity> {
+  function swap(arr: Array<Activity>, index1: number, index2: number) {
+      const temp = arr[index1];
+      arr[index1] = arr[index2];
+      arr[index2] = temp;
+  }
+  let min: number;
+  for (let i = 0; i < activites.length; i = i + 1) {
+      min = i
+      for (let j = i + 1; j < activites.length; j++) {
+          if (date_to_number(activites[j].date) < date_to_number(activites[min].date)) {
+              min = j;
+          }
+      }
+      if (min !== i) {
+        swap(activites, min, i);
+      }
+  }
+  return activites;
+}
 
 const Planyourday: React.FC = () => {
   const [activity, setActivity] = useState<string>("");
