@@ -1,3 +1,5 @@
+import { Activity } from "../components/SingleActivity";
+
 /**
  * Checks if a value is a number
  * 
@@ -182,6 +184,53 @@ export function date_to_number(date: string): number {
     const day: string = split_date[2];
     const number_string: string = year + month + day;
     return Number(number_string);
+}
+
+function selectionSort(arr: number []):number [] {
+    function swapTwo(list: number [],a: number, b: number){
+        [list[a], list[b]] = [list[b], list[a]];
+    }
+
+    let min: number;
+    for (let i = 0; i < arr.length; i++) {
+        min = i;
+        for (let j = i + 1; j < arr.length; j++) {
+            if (arr[j] < arr[min]) {
+                min = j;
+            }
+        }
+        if (min !== i) {
+          swapTwo(arr, min, i);
+        }
+    }
+    return arr;
+}
+
+
+/**
+ * 
+ * @param activites 
+ * @returns 
+ */
+export function sort_dates(activites: Array<Activity>): Array<Activity> {
+    function swap(arr: Array<Activity>, index1: number, index2: number) {
+        const temp = arr[index1];
+        arr[index1] = arr[index2];
+        arr[index2] = temp;
+    }
+    let min: number;
+    for (let i = 0; i < activites.length; i = i + 1) {
+        min = i
+        for (let j = i + 1; j < activites.length; j++) {
+            if (date_to_number(activites[j].date) < date_to_number(activites[min].date)) {
+                min = j;
+            }
+        }
+        if (min !== i) {
+          swap(activites, min, i);
+        }
+    }
+    return activites;
 }
 
 
