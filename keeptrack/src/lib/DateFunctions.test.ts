@@ -1,4 +1,4 @@
-import { check_year, day_in_month, check_date, date_has_passed, current_year, current_month, current_day, date_to_number } from "./DateFunctions";  
+import { check_year, day_in_month, check_date, date_has_passed, get_current_date_string, date_to_number } from "./DateFunctions";  
 
 describe('Tests for the correct_year function', () => {
     test('If year is a year between current year and 2099 return true', () => {
@@ -37,28 +37,23 @@ describe('Tests for the day_in_month function', () => {
 
 describe('Tests for the date_has_passed function', () => {
     test('Date of past year returns true', () => {
-        expect(date_has_passed("2022", "05", "05")).toBe(true);
+        expect(date_has_passed("2022-05-05")).toBe(true);
     })
 
     test('Date of past month and day returns true', () => {
-        expect(date_has_passed(current_year().toString(), (current_month() - 1).toString(), 
-               current_day().toString())).toBe(true);
+        expect(date_has_passed('2023-01-02')).toBe(true);
     })
 
     test('Current year and month but past day returns true', () => {
-        expect(date_has_passed(current_year().toString(), 
-                               current_month().toString(), 
-                               (current_day() - 1).toString())).toBe(true); 
+        expect(date_has_passed('2023-02-20')).toBe(true); 
     })
 
     test('Current date returns false', () => {
-        expect(date_has_passed(current_year().toString(), 
-                               current_month().toString(), 
-                               current_day().toString())).toBe(false);
+        expect(date_has_passed(get_current_date_string())).toBe(false);
     })
 
     test('Future year returns false', () => {
-        expect(date_has_passed("2050", "05", "05")).toBe(false);
+        expect(date_has_passed("2050-05-05")).toBe(false);
     })
 })
 

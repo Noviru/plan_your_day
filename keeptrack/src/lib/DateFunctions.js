@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.date_to_number = exports.check_date = exports.date_has_passed = exports.leap_year_check = exports.day_in_month = exports.check_year = exports.binary_search = exports.current_day = exports.current_month = exports.current_year = exports.get_todays_date = exports.is_number = void 0;
+exports.date_to_number = exports.check_date = exports.date_has_passed = exports.get_current_date_string = exports.leap_year_check = exports.day_in_month = exports.check_year = exports.binary_search = exports.current_day = exports.current_month = exports.current_year = exports.get_todays_date = exports.is_number = void 0;
 /**
  * Checks if a value is a number
  *
@@ -8,7 +8,7 @@ exports.date_to_number = exports.check_date = exports.date_has_passed = exports.
  * @returns - True or false whether the value is a number or not
  */
 function is_number(value) {
-    return value != null && value != '' && !isNaN(Number(value));
+    return value !== null && value !== '' && !isNaN(Number(value));
 }
 exports.is_number = is_number;
 /**
@@ -17,7 +17,8 @@ exports.is_number = is_number;
  * @returns Todays date
  */
 function get_todays_date() {
-    return new Date();
+    var todays_date = new Date();
+    return todays_date;
 }
 exports.get_todays_date = get_todays_date;
 /**
@@ -126,6 +127,22 @@ function leap_year_check(year, month, day) {
         Number(year) % 4 === 0 && Number(month) === 2 && Number(day) === 29;
 }
 exports.leap_year_check = leap_year_check;
+function get_current_date_string() {
+    var c_year = current_year().toString();
+    var c_month = current_month();
+    var c_day = current_day();
+    var c_month_string = c_month.toString();
+    var c_day_string = c_day.toString();
+    if (c_month < 10) {
+        c_month_string = "0" + c_month.toString();
+    }
+    if (c_day < 10) {
+        c_day_string = "0" + c_day.toString();
+    }
+    var current_date_string = c_year + "-" + c_month + "-" + c_day;
+    return current_date_string;
+}
+exports.get_current_date_string = get_current_date_string;
 /**
  * Checks if input date already has passed
  *
@@ -134,22 +151,10 @@ exports.leap_year_check = leap_year_check;
  * @param day - day of input date
  * @returns - true or false whether input date has passed or not
  */
-function date_has_passed(year, month, day) {
-    var curr_year = current_year();
-    var curr_month = current_month();
-    var curr_day = current_day();
-    if (Number(year) < curr_year) {
-        return true;
-    }
-    else if (Number(year) === curr_year && Number(month) < curr_month) {
-        return true;
-    }
-    else if (Number(year) === curr_year && Number(month) === curr_month && Number(day) < curr_day) {
-        return true;
-    }
-    else {
-        return false;
-    }
+function date_has_passed(date) {
+    var current_date_number = date_to_number(get_current_date_string());
+    var compare_date = date_to_number(date);
+    return compare_date < current_date_number;
 }
 exports.date_has_passed = date_has_passed;
 /**
@@ -164,7 +169,7 @@ function check_date(date) {
     var month = date_arr[1];
     var day = date_arr[2];
     if (check_year(year) && (day_in_month(month, day) || leap_year_check(year, month, day))
-        && date.length === 10 && !date_has_passed(year, month, day)) {
+        && date.length === 10 && !date_has_passed(date)) {
         return true;
     }
     else {
@@ -175,8 +180,8 @@ exports.check_date = check_date;
 /**
  * Turns a date string into a number
  *
- * @param date
- * @returns
+ * @param date - date string of format "YYYY-MM-DD"
+ * @returns - a number of format YYYYMMDD
  */
 function date_to_number(date) {
     var split_date = date.split("-", 3);
@@ -187,3 +192,9 @@ function date_to_number(date) {
     return Number(number_string);
 }
 exports.date_to_number = date_to_number;
+var today = new Date();
+console.log(today);
+console.log(get_todays_date().getMonth());
+console.log(current_month());
+console.log(current_day());
+console.log(date_to_number(get_current_date_string()));
