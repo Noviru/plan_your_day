@@ -14,6 +14,7 @@ body {
 }
 
 .Input {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -22,14 +23,29 @@ body {
 }
 
 .input_activity_field {
+    position: relative;
     padding: 10px;
     font-size: 18px;
     border: 2px solid #ccc;
     border-radius: 5px;
-    margin-right: 10px;
     width: 40%;
     box-sizing: border-box;
 }
+
+.input_activity_field:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+
+.character-counter {
+    width: 35px;
+    position: relative;
+    bottom: -14px;
+    right: 55px;
+    font-size: 14px;
+    color: #6c757d;
+}
+
 .input_activity_field:focus {
     outline: none;
     border-color: #4caf50;
@@ -48,6 +64,7 @@ body {
     position: relative;
     display: flex;
     align-items: center;
+    margin-left: 10px;
 }
 
 .submit:active {
@@ -96,6 +113,7 @@ form.activity {
 }
 
 .activity-icon {
+    height: 24px;
     cursor: pointer;
     margin-left: 8px;
 }
@@ -124,11 +142,10 @@ form.activity {
     margin: 0 auto 20px auto;
 }
 
-.input_activity_field.valid {
+.input_activity_field.valid:focus{
     border: 2px solid #4caf50;
 }
 
 .input_activity_field.invalid {
     border: 2px solid #f44336;
 }
-
