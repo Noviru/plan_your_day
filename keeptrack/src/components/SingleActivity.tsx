@@ -33,7 +33,7 @@ const SingleActivity : React.FC<Properties>= ({activity, activities, setActiviti
     {activity.isCompleted ? (
       <div className="activity-text">
         <s className="activity-todo">{activity.todo}</s>
-        <s className="activity-date">{activity.date}</s>
+        <span className="activity-date">{activity.date}</span>
       </div>
     ) : (
       <div className="activity-text">

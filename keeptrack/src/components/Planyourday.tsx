@@ -1,10 +1,10 @@
-import { check_date } from "../lib/DateFunctions"
+import {useNavigate} from "react-router-dom"
+import { check_date, date_to_number } from "../lib/DateFunctions"
 import React, { useState } from 'react';
 import { Activity } from './SingleActivity';
 import '../App.css';
 import ActivityInput from './ActivityInput';
 import ActivityList from './ActivityList';
-import { date_to_number } from "../lib/DateFunctions";
 
 export function sort_dates(activites: Array<Activity>): Array<Activity> {
   function swap(arr: Array<Activity>, index1: number, index2: number) {
@@ -27,28 +27,26 @@ export function sort_dates(activites: Array<Activity>): Array<Activity> {
   return activites;
 }
 
-export const Planyourday: React.FC = () => {
+const Planyourday: React.FC = () => {
   const [activity, setActivity] = useState<string>("");
   const [date, setDate] = useState<string>("");
   const [activities, setActivities] = useState<Activity[]>([]);
   const [isDateValid, setIsDateValid] = useState<boolean>(true);
 
   const addActivity = (e: React.FormEvent) => {
-  e.preventDefault(); // Prevents page-refresh on every submit
-  const isValid = check_date(date);
-  setIsDateValid(isValid);
-  if (activity && date && isValid) {
-    document.getElementById("date-input.invalid-date")?.classList.remove("invalid-date");
-    setActivities(sort_dates([...activities, {id: Date.now(), todo:activity, date: date, isCompleted: false}]));
-    setActivity("");
-    setDate("");
-  } else {
-    document.getElementById("date-input")?.classList.add("invalid-date");
-    setActivities(activities);
-  }
-};
-
-  console.log(date)
+    e.preventDefault(); // Prevents page-refresh on every submit
+    const isValid = check_date(date);
+    setIsDateValid(isValid);
+    if (activity && date && isValid) {
+      document.getElementById("date-input.invalid-date")?.classList.remove("invalid-date");
+      setActivities(sort_dates([...activities, {id: Date.now(), todo:activity, date: date, isCompleted: false}]));
+      setActivity("");
+      setDate("");
+    } else {
+      document.getElementById("date-input")?.classList.add("invalid-date");
+      setActivities(activities);
+    }
+  };
 
   return (
       <div className="App">

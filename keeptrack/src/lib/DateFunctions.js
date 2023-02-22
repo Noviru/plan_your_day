@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.date_to_number = exports.check_date = exports.date_has_passed = exports.get_current_date_string = exports.leap_year_check = exports.day_in_month = exports.check_year = exports.binary_search = exports.current_day = exports.current_month = exports.current_year = exports.get_todays_date = exports.is_number = void 0;
+exports.sort_dates = exports.date_to_number = exports.check_date = exports.date_has_passed = exports.get_current_date_string = exports.leap_year_check = exports.day_in_month = exports.check_year = exports.binary_search = exports.current_day = exports.current_month = exports.current_year = exports.get_todays_date = exports.is_number = void 0;
 /**
  * Checks if a value is a number
  *
@@ -192,5 +192,29 @@ function date_to_number(date) {
     return Number(number_string);
 }
 exports.date_to_number = date_to_number;
-var today = new Date();
-console.log(get_current_date_string());
+/**
+ *
+ * @param activites
+ * @returns
+ */
+function sort_dates(activites) {
+    function swap(arr, index1, index2) {
+        var temp = arr[index1];
+        arr[index1] = arr[index2];
+        arr[index2] = temp;
+    }
+    var min;
+    for (var i = 0; i < activites.length; i = i + 1) {
+        min = i;
+        for (var j = i + 1; j < activites.length; j++) {
+            if (date_to_number(activites[j].date) < date_to_number(activites[min].date)) {
+                min = j;
+            }
+        }
+        if (min !== i) {
+            swap(activites, min, i);
+        }
+    }
+    return activites;
+}
+exports.sort_dates = sort_dates;
