@@ -32,7 +32,7 @@ export function current_year(): number {
  * @returns - current month
  */
 export function current_month(): number {
-    return get_todays_date().getMonth();
+    return get_todays_date().getMonth() + 1;
 } 
 
 /**
@@ -41,7 +41,7 @@ export function current_month(): number {
  * @returns - current day
  */
 export function current_day(): number {
-    return get_todays_date().getDay();
+    return get_todays_date().getDate();
 }
 
 /**
@@ -132,7 +132,7 @@ export function get_current_date_string(): string {
         c_day_string = "0" + c_day.toString();
     }
 
-    const current_date_string: string = c_year + "-" + c_month + "-" + c_day
+    const current_date_string: string = c_year + "-" + c_month_string + "-" + c_day_string;
     return current_date_string;
 }
 
@@ -184,10 +184,6 @@ export function date_to_number(date: string): number {
     return Number(number_string);
 }
 
-const today: Date = new Date();
 
-console.log(today);
-console.log(get_todays_date().getMonth());
-console.log(current_month());
-console.log(current_day());
-console.log(date_to_number(get_current_date_string()));
+
+

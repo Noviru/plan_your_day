@@ -36,7 +36,7 @@ exports.current_year = current_year;
  * @returns - current month
  */
 function current_month() {
-    return get_todays_date().getMonth();
+    return get_todays_date().getMonth() + 1;
 }
 exports.current_month = current_month;
 /**
@@ -45,7 +45,7 @@ exports.current_month = current_month;
  * @returns - current day
  */
 function current_day() {
-    return get_todays_date().getDay();
+    return get_todays_date().getDate();
 }
 exports.current_day = current_day;
 /**
@@ -139,7 +139,7 @@ function get_current_date_string() {
     if (c_day < 10) {
         c_day_string = "0" + c_day.toString();
     }
-    var current_date_string = c_year + "-" + c_month + "-" + c_day;
+    var current_date_string = c_year + "-" + c_month_string + "-" + c_day_string;
     return current_date_string;
 }
 exports.get_current_date_string = get_current_date_string;
@@ -193,8 +193,4 @@ function date_to_number(date) {
 }
 exports.date_to_number = date_to_number;
 var today = new Date();
-console.log(today);
-console.log(get_todays_date().getMonth());
-console.log(current_month());
-console.log(current_day());
-console.log(date_to_number(get_current_date_string()));
+console.log(get_current_date_string());
