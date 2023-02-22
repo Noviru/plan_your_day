@@ -7,9 +7,10 @@ interface Properties{
   addActivity: (e: React.FormEvent) => void;
   date: string;
   setDate: React.Dispatch<React.SetStateAction<string>>
+  isDateValid: boolean
 }
 
-const ActivityInput = ({activity, setActivity, date, setDate, addActivity}: Properties) => {
+const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDateValid}: Properties) => {
   return (
     <form className="Input" onSubmit={addActivity}>
       <input type = "input" 
@@ -17,10 +18,15 @@ const ActivityInput = ({activity, setActivity, date, setDate, addActivity}: Prop
       onChange={(e) => setActivity(e.target.value)}
         placeholder='Enter a task' className="input_activity_field"></input>
       
-      <input type = "input" 
-      value={date}
-      onChange={(e) => setDate(e.target.value)}
-        placeholder='Enter a deadline' className="input_activity_field"></input>
+      <input
+        id="date-input"
+        type="input" 
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+        placeholder='YYYY-MM-DD'
+        className={`input_activity_field ${isDateValid ? 'valid' : 'invalid'}`}
+      ></input>
+      
       
       <button className="submit" type="submit">
         <FaArrowRight />
