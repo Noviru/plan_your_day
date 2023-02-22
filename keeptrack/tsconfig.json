@@ -22,5 +22,9 @@
   },
   "include": [
     "src"
+<<<<<<< HEAD
+, "lib/types.ts", "models"  ]
+=======
 , "src/lib/types.ts"  ]
+>>>>>>> 4a8d258a2eb45350be2aaf4b809f619cd29c24b7
 }
