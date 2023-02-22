@@ -31,19 +31,19 @@ describe('Tests for the day_in_month function', function () {
 });
 describe('Tests for the date_has_passed function', function () {
     test('Date of past year returns true', function () {
-        expect((0, DateFunctions_1.date_has_passed)("2022", "05", "05")).toBe(true);
+        expect((0, DateFunctions_1.date_has_passed)("2022-05-05")).toBe(true);
     });
     test('Date of past month and day returns true', function () {
-        expect((0, DateFunctions_1.date_has_passed)((0, DateFunctions_1.current_year)().toString(), ((0, DateFunctions_1.current_month)() - 1).toString(), (0, DateFunctions_1.current_day)().toString())).toBe(true);
+        expect((0, DateFunctions_1.date_has_passed)('2023-01-02')).toBe(true);
     });
     test('Current year and month but past day returns true', function () {
-        expect((0, DateFunctions_1.date_has_passed)((0, DateFunctions_1.current_year)().toString(), (0, DateFunctions_1.current_month)().toString(), ((0, DateFunctions_1.current_day)() - 1).toString())).toBe(true);
+        expect((0, DateFunctions_1.date_has_passed)('2023-02-20')).toBe(true);
     });
     test('Current date returns false', function () {
-        expect((0, DateFunctions_1.date_has_passed)((0, DateFunctions_1.current_year)().toString(), (0, DateFunctions_1.current_month)().toString(), (0, DateFunctions_1.current_day)().toString())).toBe(false);
+        expect((0, DateFunctions_1.date_has_passed)((0, DateFunctions_1.get_current_date_string)())).toBe(false);
     });
     test('Future year returns false', function () {
-        expect((0, DateFunctions_1.date_has_passed)("2050", "05", "05")).toBe(false);
+        expect((0, DateFunctions_1.date_has_passed)("2050-05-05")).toBe(false);
     });
 });
 describe('Tests for the check_date function', function () {
@@ -68,8 +68,17 @@ describe('Tests for the check_date function', function () {
         expect((0, DateFunctions_1.check_date)(ran_string)).toBe(false);
     });
 });
-describe('Tests for date_to_number function', function () {
+describe('Test for date_to_number function', function () {
     test('Input date turns into correct number', function () {
         expect((0, DateFunctions_1.date_to_number)("2023-02-02")).toBe(20230202);
+    });
+});
+describe('Test for sort_dates function', function () {
+    test('Array gets correctly sorted', function () {
+        var act1 = { id: Date.now(), todo: "test", date: "2023-02-25", isCompleted: false };
+        var act2 = { id: Date.now(), todo: "test", date: "2023-02-23", isCompleted: false };
+        var act3 = { id: Date.now(), todo: "test", date: "2023-02-24", isCompleted: false };
+        var activity_arr = [act1, act2, act3];
+        expect((0, DateFunctions_1.sort_dates)(activity_arr)).toStrictEqual([act2, act3, act1]);
     });
 });

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import {AiFillDelete, AiFillEdit} from 'react-icons/ai'
+import {AiFillCheckCircle, AiFillCloseCircle} from 'react-icons/ai'
 import {MdDone} from 'react-icons/md'
-import { activity } from '../../lib/types'
+import { activity } from '../lib/types'
 
 type Properties = {
     activity: Activity,
@@ -33,7 +33,7 @@ const SingleActivity : React.FC<Properties>= ({activity, activities, setActiviti
     {activity.isCompleted ? (
       <div className="activity-text">
         <s className="activity-todo">{activity.todo}</s>
-        <s className="activity-date">{activity.date}</s>
+        <span className="activity-date">{activity.date}</span>
       </div>
     ) : (
       <div className="activity-text">
@@ -43,10 +43,10 @@ const SingleActivity : React.FC<Properties>= ({activity, activities, setActiviti
     )}
     <div className="activity-icons">
       <span className="activity-icon" onClick={() => deleteActivity(activity.id)}>
-        <AiFillDelete />
+        <AiFillCloseCircle />
       </span>
       <span className="activity-icon" onClick={() => markAsCompleted(activity.id)}>
-        <MdDone />
+        <AiFillCheckCircle />
       </span>
     </div>
   </form>

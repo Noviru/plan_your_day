@@ -2,14 +2,17 @@ import React from 'react';
 import { useRef } from 'react';
 import {useNavigate} from "react-router-dom"
 import { useState } from 'react';
-import { user } from '../../lib/types';
+
+
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import 'firebase/database';
 import { getDatabase} from 'firebase/database';
 
 
-const users: Array<user> = [];
+
+
+
 const firebaseConfig = {
   apiKey: "AIzaSyActyc0EURxdOSHtEPa90QgX9SIZ4vexyo",
   authDomain: "planyourday-115be.firebaseapp.com",
@@ -37,6 +40,7 @@ const Login = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     setUsername(username);
+
     setPassword(password); 
     try {
       const auth = getAuth();
@@ -49,6 +53,9 @@ const Login = () => {
       
     }
     
+
+    setPassword(password);
+
   };
 
   

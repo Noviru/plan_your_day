@@ -5,7 +5,7 @@
  * @returns - True or false whether the value is a number or not
  */
 export function is_number(value: string): boolean {
-    return value != null && value != '' && !isNaN(Number(value));
+    return value !== null && value !== '' && !isNaN(Number(value));
 }
 
 /**
@@ -14,7 +14,8 @@ export function is_number(value: string): boolean {
  * @returns Todays date
  */
 export function get_todays_date(): Date {
-    return new Date();
+    const todays_date: Date = new Date();
+    return todays_date;
 }
 
 /**
@@ -31,7 +32,7 @@ export function current_year(): number {
  * @returns - current month
  */
 export function current_month(): number {
-    return get_todays_date().getMonth();
+    return get_todays_date().getMonth() + 1;
 } 
 
 /**
@@ -40,7 +41,7 @@ export function current_month(): number {
  * @returns - current day
  */
 export function current_day(): number {
-    return get_todays_date().getDay();
+    return get_todays_date().getDate();
 }
 
 /**
@@ -117,6 +118,23 @@ export function leap_year_check(year: string, month:string, day: string): boolea
            Number(year) % 4 === 0 && Number(month) === 2 && Number(day) === 29;
 }
 
+export function get_current_date_string(): string {
+    const c_year: string = current_year().toString();
+    const c_month: number = current_month();
+    const c_day: number = current_day();
+    let c_month_string: string = c_month.toString();
+    let c_day_string: string = c_day.toString();
+    if (c_month < 10) {
+        c_month_string = "0" + c_month.toString();
+    } 
+    
+    if (c_day < 10) {
+        c_day_string = "0" + c_day.toString();
+    }
+
+    const current_date_string: string = c_year + "-" + c_month_string + "-" + c_day_string;
+    return current_date_string;
+}
 
 /**
  * Checks if input date already has passed
@@ -126,22 +144,11 @@ export function leap_year_check(year: string, month:string, day: string): boolea
  * @param day - day of input date
  * @returns - true or false whether input date has passed or not
  */
-export function date_has_passed(year: string, month: string, day: string): boolean {
-    const curr_year = current_year();
-    const curr_month = current_month();
-    const curr_day = current_day();
-    if (Number(year) < curr_year) {
-        return true;        
-    } else if (Number(year) === curr_year && Number(month) < curr_month) {
-        return true;
-    } else if (Number(year) === curr_year && Number(month) === curr_month && Number(day) < curr_day) {
-        return true;
-    } else {
-        return false;
-    }
-
+export function date_has_passed(date: string): boolean {
+    const current_date_number: number = date_to_number(get_current_date_string());
+    const compare_date: number = date_to_number(date);
+    return compare_date < current_date_number;
 }
-
 
 /**
  * Checks if input date is correctly written or not
@@ -155,7 +162,7 @@ export function check_date(date: string): boolean {
     const month: string = date_arr[1];
     const day: string = date_arr[2];
     if (check_year(year) && (day_in_month(month, day) || leap_year_check(year, month, day)) 
-        && date.length === 10 && !date_has_passed(year, month, day)) {
+        && date.length === 10 && !date_has_passed(date)) {
         return true;
     } else {
         return false;
@@ -176,4 +183,8 @@ export function date_to_number(date: string): number {
     const number_string: string = year + month + day;
     return Number(number_string);
 }
+
+
+
+
 
