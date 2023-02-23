@@ -9,7 +9,13 @@ import '../App.css';
 import ActivityInput from './ActivityInput';
 import ActivityList from './ActivityList';
 
-export function sort_dates(activites: Array<Activity>): Array<Activity> {
+/**
+ * Sorts array of activities by dates by using selction sort 
+ * 
+ * @param activites - array of activities with dates
+ * @returns - array of activities sorted by dates
+ */
+function sort_dates(activites: Array<Activity>): Array<Activity> {
   function swap(arr: Array<Activity>, index1: number, index2: number) {
       const temp = arr[index1];
       arr[index1] = arr[index2];

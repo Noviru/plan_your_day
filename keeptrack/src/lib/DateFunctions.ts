@@ -111,13 +111,18 @@ export function day_in_month(month: string, day: string): boolean {
  * @param year - year to check if its a leap year
  * @param month - month to check if its february
  * @param day - day to check if it's the 29th
- * @returns - true or false whether the input date is february 29th in a leap your or not
+ * @returns - true or false whether the input date is february 29th in a leap year or not
  */
 export function leap_year_check(year: string, month:string, day: string): boolean {
     return is_number(year) && is_number(month) && is_number(day) && 
            Number(year) % 4 === 0 && Number(month) === 2 && Number(day) === 29;
 }
 
+/**
+ * Returns the curret date as a string in format "YYYY-MM-DD"
+ * 
+ * @returns - Current date as a string
+ */
 export function get_current_date_string(): string {
     const c_year: string = current_year().toString();
     const c_month: number = current_month();
