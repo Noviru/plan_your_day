@@ -1,17 +1,11 @@
-import React from 'react';
 import { useRef } from 'react';
 import {useNavigate} from "react-router-dom"
 import { useState } from 'react';
-
-
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import 'firebase/database';
 import { getDatabase} from 'firebase/database';
-
-
-
-
+import image from "./resources/pyd.png"
 
 const firebaseConfig = {
   apiKey: "AIzaSyActyc0EURxdOSHtEPa90QgX9SIZ4vexyo",
@@ -23,12 +17,9 @@ const firebaseConfig = {
   measurementId: "G-CPWJ106R0S"
 };
 
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
-
-
 
 const Login = () => {
   const navigate = useNavigate();
@@ -40,7 +31,6 @@ const Login = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     setUsername(username);
-
     setPassword(password); 
     try {
       const auth = getAuth();
@@ -50,45 +40,42 @@ const Login = () => {
       navigate("/planyourday");
     } catch (error) {
       console.error(error);
-      
     }
-    
-
     setPassword(password);
-
   };
 
-  
-  
-  
-  
-
   return (
-      <>
-        <h1 style={{color:"green"}}>Welcome to PlanYourDay, Please login</h1>
-        <form onSubmit = {handleSubmit} className = "Input">
-          <input type = "input" 
-                 placeholder = 'Enter username' 
-                 value = {username} 
-                 onChange = {(event) => 
-                  setUsername(event.target.value)}></input>
-          <input type = "input" 
-                 placeholder = 'Enter a password' 
-                 value = {password}
-                 onChange = {(event) => 
-                  setPassword(event.target.value)}></input>
-          <input type = "input" 
-                 placeholder = 'Enter a email' 
-                 value = {email}
-                 onChange = {(event) => 
-                  setEmail(event.target.value)}></input>
+    <> 
+      <form onSubmit={handleSubmit} className="Input">
+        <div className="login_container">
+          <div className="login">
+            <img src={image} className="image"/>
+            <input type="input"
+                    className='input_login_field'
+                    placeholder = 'Enter username' 
+                    value = {username} 
+                    onChange = {(event) => 
+                      setUsername(event.target.value)}></input>
+            <input type="input" 
+                    className='input_login_field'
+                    placeholder = 'Enter a password' 
+                    value = {password}
+                    onChange = {(event) => 
+                      setPassword(event.target.value)}></input>
+            <input type="input" 
+                    className='input_login_field'
+                    placeholder = 'Enter a email' 
+                    value = {email}
+                    onChange = {(event) => 
+                setEmail(event.target.value)}></input>
+            <button className="login_button" onClick={() => navigate("/")}>Login</button>
+            <h1 className="login_text">No Account yet?</h1>
+            <button className="login_button" onClick={()=>navigate("/register") }>Sign Up</button>
+            <button onClick={()=>navigate("/planyourday") }>Test button</button>
+          </div>
+        </div>  
           
-          <button onClick={()=>navigate("/")}>Login</button>
        </form>
-       <h1>No Account yet? Sign up here!</h1>
-       <button onClick={()=>navigate("/register") }>Register</button>
-       <button onClick={()=>navigate("/planyourday") }>Test button</button>
-       
        
       </>
   )

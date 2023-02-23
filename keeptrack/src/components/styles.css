@@ -149,3 +149,57 @@ form.activity {
 .input_activity_field.invalid {
     border: 2px solid #f44336;
 }
+
+.login {
+    width: 70%;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.input_login_field {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin:5px 0;
+    box-sizing: border-box;
+}
+
+.login_button {
+    background-color: #4caf50;
+    margin-top: 5px;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%; 
+    align-items: center;   
+}
+
+.login_text{
+    color: white;
+}
+
+.image {
+    position: relative;
+    width:100%;
+    margin-bottom: 30px;
+}
+
+.login_container{
+    width:30%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    background-image: radial-gradient(circle at 0% 0%,
+                #373b52,
+                #252736 51%,
+                #1d1e26);
+    border-radius: 6px;
+}
