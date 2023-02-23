@@ -14,6 +14,7 @@ body {
 }
 
 .Input {
+    position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -22,14 +23,29 @@ body {
 }
 
 .input_activity_field {
+    position: relative;
     padding: 10px;
     font-size: 18px;
     border: 2px solid #ccc;
     border-radius: 5px;
-    margin-right: 10px;
     width: 40%;
     box-sizing: border-box;
 }
+
+.input_activity_field:focus {
+    outline: none;
+    border-color: #4caf50;
+}
+
+.character-counter {
+    width: 35px;
+    position: relative;
+    bottom: -14px;
+    right: 55px;
+    font-size: 14px;
+    color: #6c757d;
+}
+
 .input_activity_field:focus {
     outline: none;
     border-color: #4caf50;
@@ -48,6 +64,7 @@ body {
     position: relative;
     display: flex;
     align-items: center;
+    margin-left: 10px;
 }
 
 .submit:active {
@@ -96,6 +113,7 @@ form.activity {
 }
 
 .activity-icon {
+    height: 24px;
     cursor: pointer;
     margin-left: 8px;
 }
@@ -124,7 +142,7 @@ form.activity {
     margin: 0 auto 20px auto;
 }
 
-.input_activity_field.valid {
+.input_activity_field.valid:focus{
     border: 2px solid #4caf50;
 }
 
@@ -132,3 +150,56 @@ form.activity {
     border: 2px solid #f44336;
 }
 
+.login {
+    width: 70%;
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.input_login_field {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin:5px 0;
+    box-sizing: border-box;
+}
+
+.login_button {
+    background-color: #4caf50;
+    margin-top: 5px;
+    color: white;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%; 
+    align-items: center;   
+}
+
+.login_text{
+    color: white;
+}
+
+.image {
+    position: relative;
+    width:100%;
+    margin-bottom: 30px;
+}
+
+.login_container{
+    width:30%;
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    background-image: radial-gradient(circle at 0% 0%,
+                #373b52,
+                #252736 51%,
+                #1d1e26);
+    border-radius: 6px;
+}

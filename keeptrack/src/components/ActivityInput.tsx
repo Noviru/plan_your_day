@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
 
 interface Properties{
@@ -10,14 +10,30 @@ interface Properties{
   isDateValid: boolean
 }
 
+
+
+const MAX_LENGTH = 50;
+
 const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDateValid}: Properties) => {
+  const [inputLength, setInputLength] = useState<number>(activity.length);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputText = e.target.value;
+    setInputLength(inputText.length);
+    setActivity(inputText.slice(0, MAX_LENGTH));
+  };
+
   return (
     <form className="Input" onSubmit={addActivity}>
-      <input type = "input" 
+    <input 
+      type="text" 
       value={activity}
-      onChange={(e) => setActivity(e.target.value)}
-        placeholder='Enter a task' className="input_activity_field"></input>
-      
+      onChange={handleChange}
+      maxLength={MAX_LENGTH}
+      placeholder='Enter a task' 
+      className="input_activity_field" 
+      />
+      <div className="character-counter">{inputLength}/{MAX_LENGTH}</div>
       <input
         id="date-input"
         type="input" 
@@ -25,15 +41,12 @@ const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDat
         onChange={(e) => setDate(e.target.value)}
         placeholder='YYYY-MM-DD'
         className={`input_activity_field ${isDateValid ? 'valid' : 'invalid'}`}
-      ></input>
-      
-      
+      />
       <button className="submit" type="submit">
         <FaArrowRight />
       </button>
     </form>
-  )
-}
-export default ActivityInput
+  );
+};
 
-
+export default ActivityInput;
