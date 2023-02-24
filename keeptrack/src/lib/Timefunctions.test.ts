@@ -17,19 +17,33 @@ describe('Tests for check_hours function', () => {
 
 describe("Tests for check_minutes function", () => {
     test("correct input returns true", () => {
-        expect(check_hours("30")).toBe(true);
+        expect(check_minutes("30")).toBe(true);
     })
 
     test("Minutes out of range returns false", () => {
-        expect(check_hours("60")).toBe(false);
+        expect(check_minutes("60")).toBe(false);
     })
 
     test("Random string returns false", () => {
-        expect(check_hours("xo")).toBe(false);
+        expect(check_minutes("xo")).toBe(false);
     })
 })
 
 
 describe("Tests for check_time functions", () => {
+    test('Correct input returns true', () => {
+        expect(check_time("17:32")).toBe(true);
+    })
     
+    test('Time out of range returns false', () => {
+        expect(check_time("24:60")).toBe(false);
+    })
+
+    test("Wrong length time returns false", () => {
+        expect(check_time("0:17")).toBe(false);
+    })
+
+    test('Random string returns false', () => {
+        expect(check_time("hadioaj")).toBe(false);
+    })
 })

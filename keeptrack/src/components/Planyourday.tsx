@@ -1,6 +1,6 @@
 
 import {useNavigate} from "react-router-dom"
-import { check_date, date_to_number } from "../lib/DateFunctions"
+import { check_date, date_to_number, time_or_date_has_passed } from "../lib/DateFunctions"
 import { check_time, time_to_number } from "../lib/Timefunctions";
 import React, { useState } from 'react';
 import { Activity } from './SingleActivity';
@@ -66,7 +66,8 @@ const Planyourday: React.FC = () => {
     const ValidDate = check_date(date);
     setIsDateValid(ValidDate);
     const ValidTime = check_time(Time);
-    if (activity && date && ValidDate && ValidTime) {
+    const has_not_passed = !time_or_date_has_passed(date, Time);
+    if (activity && date && ValidDate && ValidTime && has_not_passed) {
       document.getElementById("date-input.invalid-date")?.classList.remove("invalid-date");
       setActivities(sort_dates(sort_time(
         [...activities, {id: Date.now(), todo:activity, date: date, time: Time, isCompleted: false}])));

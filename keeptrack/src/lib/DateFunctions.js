@@ -1,6 +1,7 @@
 "use strict";
 exports.__esModule = true;
-exports.date_to_number = exports.check_date = exports.date_has_passed = exports.get_current_date_string = exports.leap_year_check = exports.day_in_month = exports.check_year = exports.binary_search = exports.current_day = exports.current_month = exports.current_year = exports.get_todays_date = exports.is_number = void 0;
+exports.date_to_number = exports.time_or_date_has_passed = exports.check_date = exports.date_has_passed = exports.get_current_date_string = exports.leap_year_check = exports.day_in_month = exports.check_year = exports.binary_search = exports.current_day = exports.current_month = exports.current_year = exports.get_todays_date = exports.is_number = void 0;
+var Timefunctions_1 = require("./Timefunctions");
 /**
  * Checks if a value is a number
  *
@@ -173,8 +174,7 @@ function check_date(date) {
     var year = date_arr[0];
     var month = date_arr[1];
     var day = date_arr[2];
-    if (check_year(year) && (day_in_month(month, day) || leap_year_check(year, month, day))
-        && date.length === 10 && !date_has_passed(date)) {
+    if (check_year(year) && (day_in_month(month, day) || leap_year_check(year, month, day)) && date.length === 10) {
         return true;
     }
     else {
@@ -182,6 +182,18 @@ function check_date(date) {
     }
 }
 exports.check_date = check_date;
+function time_or_date_has_passed(date, time) {
+    if (date_has_passed(date)) {
+        return true;
+    }
+    else if (date === get_current_date_string() && (0, Timefunctions_1.time_has_passed)(time)) {
+        return true;
+    }
+    else {
+        return false;
+    }
+}
+exports.time_or_date_has_passed = time_or_date_has_passed;
 /**
  * Turns a date string into a number
  *

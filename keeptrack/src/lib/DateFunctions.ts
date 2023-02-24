@@ -1,3 +1,5 @@
+import { time_has_passed } from "./Timefunctions";
+
 /**
  * Checks if a value is a number
  * 
@@ -166,8 +168,17 @@ export function check_date(date: string): boolean {
     const year: string = date_arr[0];
     const month: string = date_arr[1];
     const day: string = date_arr[2];
-    if (check_year(year) && (day_in_month(month, day) || leap_year_check(year, month, day)) 
-        && date.length === 10 && !date_has_passed(date)) {
+    if (check_year(year) && (day_in_month(month, day) || leap_year_check(year, month, day)) && date.length === 10) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+export function time_or_date_has_passed(date: string, time: string) {
+    if (date_has_passed(date)) {
+        return true;
+    } else if (date === get_current_date_string() && time_has_passed(time)) {
         return true;
     } else {
         return false;
