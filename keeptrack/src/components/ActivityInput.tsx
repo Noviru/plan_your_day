@@ -8,15 +8,16 @@ interface Properties{
   date: string;
   setDate: React.Dispatch<React.SetStateAction<string>>
   isDateValid: boolean
+  inputLength: number;
+  setInputLength: React.Dispatch<React.SetStateAction<number>>
 }
 
 
 
 const MAX_LENGTH = 50;
 
-const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDateValid}: Properties) => {
-  const [inputLength, setInputLength] = useState<number>(activity.length);
-
+const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDateValid, inputLength, setInputLength}: Properties) => {
+  
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputText = e.target.value;
     setInputLength(inputText.length);

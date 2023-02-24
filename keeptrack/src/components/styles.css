@@ -156,7 +156,7 @@ form.activity {
     flex-direction:column;
     justify-content: center;
     align-items: center;
-    margin: 20px;
+    margin: 50px;
 }
 
 .input_login_field {
@@ -169,8 +169,12 @@ form.activity {
     box-sizing: border-box;
 }
 
+.input_login_field:focus {
+    border: 2px solid #4caf50;
+}
+
 .login_button {
-    background-color: #4caf50;
+    background: linear-gradient(to right, #4caf50 0%, #357a38 100%);
     margin-top: 5px;
     color: white;
     font-size: 18px;
@@ -202,4 +206,5 @@ form.activity {
                 #252736 51%,
                 #1d1e26);
     border-radius: 6px;
+    margin-top: 75px;
 }

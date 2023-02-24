@@ -6,6 +6,8 @@ import "firebase/auth";
 import { useState } from "react";
 import { initializeApp } from "firebase/app";
 import 'firebase/database';
+import {useNavigate} from "react-router-dom"
+import image from "./resources/pyd.png"
 
 
 
@@ -24,7 +26,8 @@ const firebaseConfig = {
     const auth = getAuth(app);
     const database = getDatabase(app);
 
-  const Register = () => {
+const Register = () => {
+      const navigate = useNavigate();
       const [username, setUsername] = useState("");
       const [email, setEmail] = useState("");
       const [password, setPassword] = useState("");
@@ -48,23 +51,37 @@ const firebaseConfig = {
       };
     
       return (
-        <form onSubmit={handleSignup}>
-          <label>
-            Username:
-            <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-          </label>
-          <br />
-          <label>
-            Email:
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-          </label>
-          <br />
-          <label>
-            Password:
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-          </label>
-          <br />
-          <button type="submit">Sign up</button>
+        <form onSubmit={handleSignup} className="Input">
+           <div className="login_container">
+            <div className="login">
+              
+              <img src={image} className="image" />
+              
+            <input type="text"
+                className='input_login_field'
+                placeholder = 'Enter username' 
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}></input>
+              
+            <input type="email" 
+                className='input_login_field'
+                placeholder = 'Enter email'   
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}></input>
+              
+              <input type="password" 
+                className='input_login_field'
+                placeholder = 'Enter password'   
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}></input>
+              
+              <button className="login_button" type="submit">Register</button>
+              
+            <h1 className="login_text">Already have an account?</h1>
+            
+            <button className="login_button" onClick={()=>navigate("/") }>Log in</button>
+          </div>  
+        </div> 
         </form>
       );
     };

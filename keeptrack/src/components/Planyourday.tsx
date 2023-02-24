@@ -35,6 +35,7 @@ const Planyourday: React.FC = () => {
   const [date, setDate] = useState<string>("");
   const [activities, setActivities] = useState<Activity[]>([]);
   const [isDateValid, setIsDateValid] = useState<boolean>(true);
+  const [inputLength, setInputLength] = useState<number>(activity.length);
 
   const addActivity = (e: React.FormEvent) => {
     e.preventDefault(); // Prevents page-refresh on every submit
@@ -45,9 +46,7 @@ const Planyourday: React.FC = () => {
       setActivities(sort_dates([...activities, {id: Date.now(), todo:activity, date: date, isCompleted: false}]));
       setActivity("");
       setDate("");
-
-
-
+      setInputLength(0);
     } else {
       document.getElementById("date-input")?.classList.add("invalid-date");
       setActivities(activities);
@@ -59,7 +58,8 @@ const Planyourday: React.FC = () => {
       <div className="App">
         <span className = "heading">PlanYourDay </span>
       <ActivityInput activity={activity} setActivity={setActivity} date={date}
-                              setDate={setDate} addActivity={addActivity} isDateValid={isDateValid} />
+        setDate={setDate} addActivity={addActivity} isDateValid={isDateValid}
+        inputLength={inputLength} setInputLength={setInputLength} />
       <div className="activity-title">
         <h2>Activities</h2>
         <div className="activity-title-underline"></div>
