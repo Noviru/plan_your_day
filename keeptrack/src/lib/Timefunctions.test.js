@@ -37,3 +37,8 @@ describe("Tests for check_time functions", function () {
         expect((0, Timefunctions_1.check_time)("hadioaj")).toBe(false);
     });
 });
+describe("Test for time time_to_number", function () {
+    test("Input returns correct number", function () {
+        expect((0, Timefunctions_1.time_to_number)("17:32")).toBe(1732);
+    });
+});

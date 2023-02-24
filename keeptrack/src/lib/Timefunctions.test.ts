@@ -1,4 +1,4 @@
-import { check_hours, check_minutes, check_time } from "./Timefunctions";
+import { check_hours, check_minutes, check_time, time_has_passed, time_to_number } from "./Timefunctions";
 
 describe('Tests for check_hours function', () => {
     test("correct input returns true", () => {
@@ -45,5 +45,11 @@ describe("Tests for check_time functions", () => {
 
     test('Random string returns false', () => {
         expect(check_time("hadioaj")).toBe(false);
+    })
+})
+
+describe("Test for time time_to_number", () => {
+    test("Input returns correct number", () => {
+        expect(time_to_number("17:32")).toBe(1732);
     })
 })
