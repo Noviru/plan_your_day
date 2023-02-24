@@ -2,12 +2,15 @@ import React from 'react';
 import { useRef } from 'react';
 import {useNavigate} from "react-router-dom"
 import { useState } from 'react';
-
-
+import "firebase/auth";
+import "firebase/database";
+import 'firebase/firestore';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import 'firebase/database';
 import { getDatabase} from 'firebase/database';
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+// import { createUserDocument } from '../firebase-setup/firebase';
 
 
 
@@ -47,7 +50,20 @@ const Login = () => {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       console.log("User logged in successfully!");
-      navigate("/planyourday");
+      console.log("Username: " + user);
+      // await createUserDocument(user);
+      const db = getFirestore();
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        console.log(userData);
+        navigate('/planyourday', { state: { userData: userData }});
+        // Pass the userData to your homepage component
+      }
+      
+      //navigate('/planyourday',{state:{id:1,name:'sabaoon'}});
     } catch (error) {
       console.error(error);
       

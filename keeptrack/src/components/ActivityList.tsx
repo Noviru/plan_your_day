@@ -20,7 +20,6 @@ const ActivityList: React.FC<Properties>= ({activities, setActivities}: Properti
           activities={activities}
           setActivities={setActivities}
         />
-
       ))}
     </div>
   )
