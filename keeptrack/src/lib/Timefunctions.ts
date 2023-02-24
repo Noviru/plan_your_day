@@ -10,5 +10,11 @@ export function check_minutes(minutes: string): boolean {
 
 export function check_time(time: string): boolean {
     const hour_minute_arr: Array<string> = time.split(":", 2);
-    const hours: string = 
+    const hours: string = hour_minute_arr[0];
+    const minutes: string = hour_minute_arr[1];
+    if (check_hours(hours) && check_minutes(minutes) && time.length === 5) {
+        return true;
+    } else {
+        return false;
+    }
 }
