@@ -30,4 +30,6 @@ describe("Tests for check_minutes function", () => {
 })
 
 
-describe("Tests for check_time functions")
+describe("Tests for check_time functions", () => {
+    
+})

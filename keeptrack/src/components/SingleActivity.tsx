@@ -6,6 +6,7 @@ import { activity } from '../lib/types'
 type Properties = {
     activity: Activity,
     date: string,
+    time: string,
     activities: Activity[],
     setActivities: React.Dispatch<React.SetStateAction<Activity[]>>
 }
@@ -14,6 +15,7 @@ export interface Activity{
     id: number,
     todo: string,
     date: string, 
+    time: string,
     isCompleted: boolean
 }
 
@@ -34,11 +36,13 @@ const SingleActivity : React.FC<Properties>= ({activity, activities, setActiviti
       <div className="activity-text">
         <s className="activity-todo">{activity.todo}</s>
         <span className="activity-date">{activity.date}</span>
+        <span className='activity-time'>{activity.time}</span>
       </div>
     ) : (
       <div className="activity-text">
         <span className="activity-todo">{activity.todo}</span>
         <span className="activity-date">{activity.date}</span>
+        <span className='activity-time'>{activity.time}</span>
       </div>
     )}
     <div className="activity-icons">

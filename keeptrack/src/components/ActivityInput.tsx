@@ -8,13 +8,15 @@ interface Properties{
   date: string;
   setDate: React.Dispatch<React.SetStateAction<string>>
   isDateValid: boolean
+  setTime: React.Dispatch<React.SetStateAction<string>>
+  Time: string;
 }
 
 
 
 const MAX_LENGTH = 50;
 
-const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDateValid}: Properties) => {
+const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDateValid, setTime, Time }: Properties) => {
   const [inputLength, setInputLength] = useState<number>(activity.length);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,6 +44,13 @@ const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDat
         placeholder='YYYY-MM-DD'
         className={`input_activity_field ${isDateValid ? 'valid' : 'invalid'}`}
       />
+      <input
+        id="time-input"
+        value={Time}
+        onChange={(e) => setTime(e.target.value)}
+        placeholder="HH:MM"
+        className='input_time_field'
+        />
       <button className="submit" type="submit">
         <FaArrowRight />
       </button>
