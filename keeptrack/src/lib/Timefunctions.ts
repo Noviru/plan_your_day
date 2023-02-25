@@ -42,7 +42,7 @@ export function time_to_number(time: string): number {
  * 
  * @returns a number of the current hours
  */
-function get_current_hours(): number {
+export function get_current_hours(): number {
     return get_todays_date().getHours();
 }
 
@@ -51,9 +51,33 @@ function get_current_hours(): number {
  * 
  * @returns a number of the current minutes
  */
-function get_current_minutes(): number {
+export function get_current_minutes(): number {
     return get_todays_date().getMinutes();
 }
+
+/**
+ * Gives you the current time as a string of format HH:MM
+ * 
+ * @returns string of the current time
+ */
+export function get_current_time_string(): string {
+    const current_hours: number = get_current_hours();
+    const current_minutes: number = get_current_minutes();
+    let current_hours_string: string = current_hours.toString();
+    let current_minutes_string: string = current_minutes.toString();
+
+    if (current_hours < 10) {
+        current_hours_string = "0" + current_hours_string;
+    }
+
+    if (current_minutes < 10) {
+        current_minutes_string = "0" + current_minutes_string; 
+    } 
+    const current_time_string: string = current_hours + current_minutes_string;
+    return current_time_string;
+}
+
+
 
 /**
  * Gives you the current time as a number of format HHMM
@@ -78,11 +102,7 @@ function get_current_time_number(): number {
  * @returns true or false whether the time has passed or not
  */
 export function time_has_passed(time: string) {
-    const hour_minute_arr: Array<string> = time.split(":", 2);
-    const hours: string = hour_minute_arr[0];
-    const minutes: string = hour_minute_arr[1];
-    const time_string = hours + minutes
-    const time_number: number = Number(time_string);
+    const time_number: number = time_to_number(time);
     return time_number < get_current_time_number();
 }
 

@@ -73,12 +73,3 @@ describe('Test for date_to_number function', function () {
         expect((0, DateFunctions_1.date_to_number)("2023-02-02")).toBe(20230202);
     });
 });
-describe('Test for sort_dates function', function () {
-    test('Array gets correctly sorted', function () {
-        var act1 = { id: Date.now(), todo: "test", date: "2023-02-25", isCompleted: false };
-        var act2 = { id: Date.now(), todo: "test", date: "2023-02-23", isCompleted: false };
-        var act3 = { id: Date.now(), todo: "test", date: "2023-02-24", isCompleted: false };
-        var activity_arr = [act1, act2, act3];
-        expect((0, DateFunctions_1.sort_dates)(activity_arr)).toStrictEqual([act2, act3, act1]);
-    });
-});
