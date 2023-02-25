@@ -36,6 +36,12 @@ function sort_dates(activites: Array<Activity>): Array<Activity> {
   return activites;
 }
 
+/**
+ * Sorts array of activities by time by using selction sort 
+ * 
+ * @param activites - array of activities with dates
+ * @returns - array of activities sorted by time
+ */
 function sort_time(activites: Array<Activity>): Array<Activity> {
   let min: number;
   for (let i = 0; i < activites.length; i = i + 1) {
@@ -50,8 +56,30 @@ function sort_time(activites: Array<Activity>): Array<Activity> {
       }
   }
   return activites;
-
 }
+
+/**
+ * Sorts array of activities alpabeticly by using selction sort 
+ * 
+ * @param activites - array of activities with dates
+ * @returns - array of activities sorted alphabeticly
+ */
+function sort_alphabeticly(activites: Array<Activity>): Array<Activity> {
+  let min: number;
+  for (let i = 0; i < activites.length; i = i + 1) {
+      min = i
+      for (let j = i + 1; j < activites.length; j = j + 1) {
+          if (activites[j].todo < activites[min].todo) {
+              min = j;
+          }
+      }
+      if (min !== i) {
+        swap(activites, min, i);
+      }
+  }
+  return activites;
+}
+
 
 const Planyourday: React.FC = () => {
   const [activity, setActivity] = useState<string>("");
@@ -69,8 +97,8 @@ const Planyourday: React.FC = () => {
     const has_not_passed = !time_or_date_has_passed(date, Time);
     if (activity && date && ValidDate && ValidTime && has_not_passed) {
       document.getElementById("date-input.invalid-date")?.classList.remove("invalid-date");
-      setActivities(sort_dates(sort_time(
-        [...activities, {id: Date.now(), todo:activity, date: date, time: Time, isCompleted: false}])));
+      setActivities(sort_dates(sort_time(sort_alphabeticly(
+        [...activities, {id: Date.now(), todo:activity, date: date, time: Time, isCompleted: false}]))));
       setActivity("");
       setDate("");
       setTime("");
