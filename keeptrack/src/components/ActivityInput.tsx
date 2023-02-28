@@ -1,5 +1,6 @@
-import React from 'react'
+
 import { FaArrowRight } from 'react-icons/fa';
+import React, { useState, SetStateAction, Dispatch } from 'react';
 
 interface Properties{
   activity: string,
@@ -8,6 +9,8 @@ interface Properties{
   date: string;
   setDate: React.Dispatch<React.SetStateAction<string>>
   isDateValid: boolean
+  Time: string;
+  setTime: Dispatch<SetStateAction<string>>;
 }
 
 const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDateValid}: Properties) => {

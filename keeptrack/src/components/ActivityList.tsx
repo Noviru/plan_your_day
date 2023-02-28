@@ -16,6 +16,7 @@ const ActivityList: React.FC<Properties>= ({activities, setActivities}: Properti
         <SingleActivity 
           activity={activity} 
           date={activity.date}
+          time={activity.time}
           key={activity.id} 
           activities={activities}
           setActivities={setActivities}
