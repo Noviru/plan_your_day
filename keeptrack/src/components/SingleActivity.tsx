@@ -2,6 +2,15 @@ import React, { useState } from 'react'
 import {AiFillCheckCircle, AiFillCloseCircle} from 'react-icons/ai'
 import {MdDone} from 'react-icons/md'
 import { activity } from '../lib/types'
+import { string } from 'yup'
+import { doc, setDoc, getDoc, updateDoc} from "firebase/firestore";
+
+
+import 'firebase/firestore';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+
+import 'firebase/compat/database'
 
 type Properties = {
     activity: Activity,
@@ -19,11 +28,26 @@ export interface Activity{
     isCompleted: boolean
 }
 
+interface MyData {
+  todos: { id: string, date: string, todo: string, isCompleted: boolean }[];
+}
+
 const SingleActivity : React.FC<Properties>= ({activity, activities, setActivities}) => {
-    const deleteActivity = (id: number) => {
+    const [data, setData] = useState<MyData | null>(null);
+    const deleteActivity = async (id: number) => {
         setActivities(activities.filter( activity => activity.id !== id ))
+        const newActivities = activities.filter((activity) => activity.id !== id);
+
+        const docRef = firebase.firestore().collection("users").doc(firebase.auth().currentUser!.uid);
+
+        await updateDoc(docRef, {
+          activities: newActivities
+        });
+
+  
     };
     const markAsCompleted = (id: number) => {
+        console.log("Här då?")
         setActivities(activities.map(activity => activity.id === id 
                                     ? {...activity, isCompleted: !activity.isCompleted}
                                     : activity

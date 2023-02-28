@@ -112,7 +112,7 @@ const Planyourday: React.FC = () => {
     const ValidTime = check_time(Time);
     const has_not_passed = !time_or_date_has_passed(date, Time);
     if (activity && date && ValidDate  && has_not_passed) {
-      console.log("KOmmer jag hit?")
+      console.log("Kommer jag hit?")
       document.getElementById("date-input.invalid-date")?.classList.remove("invalid-date");
 
       setActivities(sort_dates([...activities, {id: Date.now(), todo:activity, time: Time, date: date, isCompleted: false}]));
