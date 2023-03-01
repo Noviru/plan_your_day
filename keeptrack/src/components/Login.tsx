@@ -6,12 +6,14 @@ import "firebase/auth";
 import "firebase/database";
 import 'firebase/firestore';
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, setPersistence } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import 'firebase/database';
 import { getDatabase} from 'firebase/database';
 
 import { getFirestore, doc, getDoc } from "firebase/firestore";
+
+import { browserLocalPersistence } from "firebase/auth";
 // import { createUserDocument } from '../firebase-setup/firebase';
 
 
@@ -31,6 +33,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 const database = getDatabase(app);
 
@@ -48,6 +51,15 @@ const Login = () => {
     try {
       const auth = getAuth();
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+      setPersistence(auth, browserLocalPersistence)
+      .then(() => {
+        console.log("Successfully set session persistence!");
+      })
+      .catch((error) => {
+        console.log("Error setting session persistence:", error);
+      });
+
       const user = userCredential.user;
       console.log("User logged in successfully!");
       console.log("Username: " + user);

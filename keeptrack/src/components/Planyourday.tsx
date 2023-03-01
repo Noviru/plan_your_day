@@ -16,7 +16,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/database'
-
+import { doc, getDoc } from "firebase/firestore";
 import { signupUser } from '../firebase-setup/firebase';
 
 
@@ -142,6 +142,9 @@ const Planyourday: React.FC = () => {
 
     }
   }
+
+
+  
 
 
   return (

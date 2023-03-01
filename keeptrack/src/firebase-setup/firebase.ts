@@ -4,6 +4,9 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/database'
+import { getAuth, setPersistence, signInWithEmailAndPassword } from "firebase/auth";
+import { browserSessionPersistence } from "firebase/auth";
+
 
 // Import the Firestore type
 // TODO: Add SDKs for Firebase products that you want to use
@@ -23,7 +26,7 @@ import 'firebase/compat/database'
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
 export const auth = firebase.auth();
 export const db = firebase.database();
@@ -42,6 +45,7 @@ export const signupUser = (userDetails: any) => {
       .then(() => {
           //Once the user creation has happened successfully, we can add the currentUser into firestore
           //with the appropriate details.
+          
           if(firebase.auth().currentUser !== null){ 
           firebase.firestore().collection('users').doc(firebase.auth().currentUser!.uid)
           .set({
