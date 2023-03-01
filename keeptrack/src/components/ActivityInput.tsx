@@ -10,10 +10,10 @@ interface Properties{
   setDate: React.Dispatch<React.SetStateAction<string>>
   isDateValid: boolean
   Time: string;
-  setTime: Dispatch<SetStateAction<string>>;
+  setTime: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDateValid}: Properties) => {
+const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDateValid, Time, setTime}: Properties) => {
   return (
     <form className="Input" onSubmit={addActivity}>
       <input type = "input" 
@@ -28,6 +28,13 @@ const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDat
         placeholder='YYYY-MM-DD'
         className={`input_activity_field ${isDateValid ? 'valid' : 'invalid'}`}
       ></input>
+      <input
+        id="time-input"
+        value={Time}
+        onChange={(e) => setTime(e.target.value)}
+        placeholder="HH:MM"
+        className='input_time_field'
+        />
       
       
       <button className="submit" type="submit">
