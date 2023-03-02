@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {AiFillCheckCircle, AiFillCloseCircle} from 'react-icons/ai'
 import {MdDone} from 'react-icons/md'
 import { activity } from '../lib/types'
-import { string } from 'yup'
 import { doc, setDoc, getDoc, updateDoc} from "firebase/firestore";
 
 
@@ -34,6 +33,9 @@ interface MyData {
 
 const SingleActivity : React.FC<Properties>= ({activity, activities, setActivities}) => {
     const [data, setData] = useState<MyData | null>(null);
+
+    // Deletes an activity from the database by creating a new activity array without the id which was removed
+    // Takes an argument id as a number.
     const deleteActivity = async (id: number) => {
         setActivities(activities.filter( activity => activity.id !== id ))
         const newActivities = activities.filter((activity) => activity.id !== id);
@@ -47,7 +49,6 @@ const SingleActivity : React.FC<Properties>= ({activity, activities, setActiviti
   
     };
     const markAsCompleted = (id: number) => {
-        console.log("Här då?")
         setActivities(activities.map(activity => activity.id === id 
                                     ? {...activity, isCompleted: !activity.isCompleted}
                                     : activity

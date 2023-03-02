@@ -8,7 +8,6 @@ import 'firebase/firestore';
 
 import { getAuth, signInWithEmailAndPassword, setPersistence } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import 'firebase/database';
 import { getDatabase} from 'firebase/database';
 
 import { getFirestore, doc, getDoc } from "firebase/firestore";
@@ -44,6 +43,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const dataRef = useRef<HTMLInputElement>(null);
 
+
+  //Uses the built in function signInWithEmailAndPassword with firebase to check the database and if 
+  // It is successful we navigate the user to the homepage and send the userdata to it.
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     setUsername(username);
@@ -52,18 +54,10 @@ const Login = () => {
       const auth = getAuth();
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
 
-      setPersistence(auth, browserLocalPersistence)
-      .then(() => {
-        console.log("Successfully set session persistence!");
-      })
-      .catch((error) => {
-        console.log("Error setting session persistence:", error);
-      });
 
       const user = userCredential.user;
       console.log("User logged in successfully!");
       console.log("Username: " + user);
-      // await createUserDocument(user);
       const db = getFirestore();
       const docRef = doc(db, "users", user.uid);
       const docSnap = await getDoc(docRef);
@@ -75,7 +69,6 @@ const Login = () => {
         // Pass the userData to your homepage component
       }
       
-      //navigate('/planyourday',{state:{id:1,name:'sabaoon'}});
     } catch (error) {
       console.error(error);
     }
@@ -94,7 +87,7 @@ const Login = () => {
                     value = {username} 
                     onChange = {(event) => 
                       setUsername(event.target.value)}></input>
-            <input type="input" 
+            <input type="password" 
                     className='input_login_field'
                     placeholder = 'Enter a password' 
                     value = {password}
@@ -109,7 +102,6 @@ const Login = () => {
             <button className="login_button" onClick={() => navigate("/")}>Login</button>
             <h1 className="login_text">No Account yet?</h1>
             <button className="login_button" onClick={()=>navigate("/register") }>Sign Up</button>
-            <button onClick={()=>navigate("/planyourday") }>Test button</button>
           </div>
         </div>  
           

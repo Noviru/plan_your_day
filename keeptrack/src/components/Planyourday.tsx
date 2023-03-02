@@ -101,9 +101,11 @@ const Planyourday: React.FC = () => {
   const [Time, setTime] = useState<string>("");
   const [activities, setActivities] = useState<Activity[]>([]);
   const [isDateValid, setIsDateValid] = useState<boolean>(true);
+  const navigate = useNavigate();
 
 
-
+  // Adds an activity to the database and to the variable activites which is an array.
+  // The activity is then displayed when we send the variable to the ActivityList component.
   const addActivity = async (e: React.FormEvent) => {
     
     e.preventDefault(); // Prevents page-refresh on every submit
@@ -122,7 +124,7 @@ const Planyourday: React.FC = () => {
         userRef.get().then((doc) => {
           if (doc.exists) {
             const userData = doc.data();
-            const updatedActivities = [...userData?.activities, {id: Date.now(), todo: activity, date: date, isCompleted: false}];
+            const updatedActivities = [...userData?.activities, {id: Date.now(), todo: activity, date: date, time: Time, isCompleted: false}];
             userRef.update({
               activities: updatedActivities
             });
@@ -155,6 +157,7 @@ const Planyourday: React.FC = () => {
                               setTime={setTime} />
       <div className="activity-title">
       <h2>Welcome {userData.username}</h2>
+      <button className="logout_button" onClick={() => navigate("/")}>Logout</button>
         <h2>Activities</h2>
         <div className="activity-title-underline"></div>
       </div>

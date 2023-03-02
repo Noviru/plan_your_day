@@ -22,6 +22,7 @@ interface Properties{
 
 const ActivityList: React.FC<Properties>= ({activities, setActivities}: Properties) => {
 
+  // Fetches the activites from the database and set the activits variable to the activites in the database.
   useEffect(() => {
     const fetchActivities = async () => {
       const userRef = firebase.firestore().collection('users').doc(firebase.auth().currentUser!.uid);
