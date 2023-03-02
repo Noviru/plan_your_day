@@ -81,24 +81,18 @@ const Login = () => {
         <div className="login_container">
           <div className="login">
             <img src={image} className="image"/>
-            <input type="input"
-                    className='input_login_field'
-                    placeholder = 'Enter username' 
-                    value = {username} 
-                    onChange = {(event) => 
-                      setUsername(event.target.value)}></input>
-            <input type="password" 
-                    className='input_login_field'
-                    placeholder = 'Enter a password' 
-                    value = {password}
-                    onChange = {(event) => 
-                      setPassword(event.target.value)}></input>
             <input type="input" 
                     className='input_login_field'
                     placeholder = 'Enter a email' 
                     value = {email}
                     onChange = {(event) => 
                 setEmail(event.target.value)}></input>
+            <input type="password" 
+                    className='input_login_field'
+                    placeholder = 'Enter a password' 
+                    value = {password}
+                    onChange = {(event) => 
+                      setPassword(event.target.value)}></input>
             <button className="login_button" onClick={() => navigate("/")}>Login</button>
             <h1 className="login_text">No Account yet?</h1>
             <button className="login_button" onClick={()=>navigate("/register") }>Sign Up</button>
