@@ -1,11 +1,21 @@
 import { useRef } from 'react';
 import {useNavigate} from "react-router-dom"
 import { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+import "firebase/auth";
+import "firebase/database";
+import 'firebase/firestore';
+
+import { getAuth, signInWithEmailAndPassword, setPersistence } from "firebase/auth";
 import { initializeApp } from "firebase/app";
-import 'firebase/database';
 import { getDatabase} from 'firebase/database';
+
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+
+import { browserLocalPersistence } from "firebase/auth";
+// import { createUserDocument } from '../firebase-setup/firebase';
 import image from "./resources/pyd.png"
+
 
 const firebaseConfig = {
   apiKey: "AIzaSyActyc0EURxdOSHtEPa90QgX9SIZ4vexyo",
@@ -18,6 +28,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
 const auth = getAuth(app);
 const database = getDatabase(app);
 
@@ -28,6 +39,9 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const dataRef = useRef<HTMLInputElement>(null);
 
+
+  //Uses the built in function signInWithEmailAndPassword with firebase to check the database and if 
+  // It is successful we navigate the user to the homepage and send the userdata to it.
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     setUsername(username);
@@ -35,9 +49,22 @@ const Login = () => {
     try {
       const auth = getAuth();
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+
       const user = userCredential.user;
       console.log("User logged in successfully!");
-      navigate("/planyourday");
+      console.log("Username: " + user);
+      const db = getFirestore();
+      const docRef = doc(db, "users", user.uid);
+      const docSnap = await getDoc(docRef);
+
+      if (docSnap.exists()) {
+        const userData = docSnap.data();
+        console.log(userData);
+        navigate('/planyourday', { state: { userData: userData }});
+        // Pass the userData to your homepage component
+      }
+      
     } catch (error) {
       console.error(error);
     }
@@ -68,7 +95,6 @@ const Login = () => {
           </div>
         </div>  
        </form>
-       
       </>
   )
 };

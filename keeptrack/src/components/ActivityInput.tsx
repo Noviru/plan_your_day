@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+
 import { FaArrowRight } from 'react-icons/fa';
+import React from 'react';
+import {time_or_date_has_passed } from "../lib/DateFunctions"
 
 interface Properties{
   activity: string,
@@ -10,44 +12,48 @@ interface Properties{
   isDateValid: boolean
   inputLength: number;
   setInputLength: React.Dispatch<React.SetStateAction<number>>
+  Time: string;
+  setTime: React.Dispatch<React.SetStateAction<string>>;
+  isTimeValid: boolean
 }
-
-
 
 const MAX_LENGTH = 50;
 
-const ActivityInput = ({activity, setActivity, date, setDate, addActivity, isDateValid, inputLength, setInputLength}: Properties) => {
-  
+const ActivityInput = ({ activity, setActivity, date, setDate, addActivity,
+                          isDateValid, inputLength, setInputLength, Time, setTime,
+                            isTimeValid }: Properties) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputText = e.target.value;
     setInputLength(inputText.length);
     setActivity(inputText.slice(0, MAX_LENGTH));
   };
-
   return (
     <form className="Input" onSubmit={addActivity}>
-    <input 
-      type="text" 
-      value={activity}
-      onChange={handleChange}
-      maxLength={MAX_LENGTH}
-      placeholder='Enter a task' 
-      className="input_activity_field" 
-      />
-      <div className="character-counter">{inputLength}/{MAX_LENGTH}</div>
+      <input type="input"
+        value={activity}
+        onChange={(e) => setActivity(e.target.value)}
+        placeholder='Enter a task' className="input_activity_field"></input>
       <input
         id="date-input"
-        type="input" 
+        type="input"
         value={date}
         onChange={(e) => setDate(e.target.value)}
         placeholder='YYYY-MM-DD'
         className={`input_activity_field ${isDateValid ? 'valid' : 'invalid'}`}
+      ></input>
+      <input
+        id="time-input"
+        type="input"
+        value={Time}
+        onChange={(e) => setTime(e.target.value)}
+        placeholder="HH:MM"
+        className={`input_activity_field ${isTimeValid && !time_or_date_has_passed(date,Time)? 'valid' : 'invalid'}`}
       />
       <button className="submit" type="submit">
         <FaArrowRight />
       </button>
     </form>
-  );
-};
+  )
+}
 
-export default ActivityInput;
+export default ActivityInput

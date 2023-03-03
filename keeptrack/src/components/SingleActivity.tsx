@@ -2,10 +2,19 @@ import React, { useState } from 'react'
 import {AiFillCheckCircle, AiFillCloseCircle} from 'react-icons/ai'
 import {MdDone} from 'react-icons/md'
 import { activity } from '../lib/types'
+import { doc, setDoc, getDoc, updateDoc} from "firebase/firestore";
+
+
+import 'firebase/firestore';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/firestore';
+
+import 'firebase/compat/database'
 
 type Properties = {
     activity: Activity,
     date: string,
+    time: string,
     activities: Activity[],
     setActivities: React.Dispatch<React.SetStateAction<Activity[]>>
 }
@@ -14,12 +23,30 @@ export interface Activity{
     id: number,
     todo: string,
     date: string, 
+    time: string,
     isCompleted: boolean
 }
 
+interface MyData {
+  todos: { id: string, date: string, todo: string, isCompleted: boolean }[];
+}
+
 const SingleActivity : React.FC<Properties>= ({activity, activities, setActivities}) => {
-    const deleteActivity = (id: number) => {
+    const [data, setData] = useState<MyData | null>(null);
+
+    // Deletes an activity from the database by creating a new activity array without the id which was removed
+    // Takes an argument id as a number.
+    const deleteActivity = async (id: number) => {
         setActivities(activities.filter( activity => activity.id !== id ))
+        const newActivities = activities.filter((activity) => activity.id !== id);
+
+        const docRef = firebase.firestore().collection("users").doc(firebase.auth().currentUser!.uid);
+
+        await updateDoc(docRef, {
+          activities: newActivities
+        });
+
+  
     };
     const markAsCompleted = (id: number) => {
         setActivities(activities.map(activity => activity.id === id 
@@ -34,11 +61,13 @@ const SingleActivity : React.FC<Properties>= ({activity, activities, setActiviti
       <div className="activity-text">
         <s className="activity-todo">{activity.todo}</s>
         <span className="activity-date">{activity.date}</span>
+        <span className='activity-time'>{activity.time}</span>
       </div>
     ) : (
       <div className="activity-text">
         <span className="activity-todo">{activity.todo}</span>
         <span className="activity-date">{activity.date}</span>
+        <span className='activity-time'>{activity.time}</span>
       </div>
     )}
     <div className="activity-icons">
