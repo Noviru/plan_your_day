@@ -32,7 +32,7 @@ const ActivityInput = ({ activity, setActivity, date, setDate, addActivity,
       <input type="input"
         value={activity}
         onChange={(e) => setActivity(e.target.value)}
-        placeholder='Enter a task' className="input_activity_field"></input>
+        placeholder='Enter a task' className="input_activity_field_todo"></input>
       <input
         id="date-input"
         type="input"

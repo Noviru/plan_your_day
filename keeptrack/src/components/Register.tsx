@@ -6,8 +6,6 @@ import { signupUser } from '../firebase-setup/firebase';
 import image from "./resources/pyd.png"
 import { useNavigate } from "react-router-dom";
 
-
-
 const Register = () => {
       const navigate = useNavigate();
       const [userDetails, setUserDetails] = useState({
