@@ -13,7 +13,7 @@ const Register = () => {
         email: '',
         password: '',
         activities: []
-      });
+      }) ;
 
       const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -21,7 +21,7 @@ const Register = () => {
 
       };
     
-      const handleSignup = async (event: any) => {  
+      const handleSignup: React.FormEventHandler<HTMLFormElement> = async (event) => {
         event.preventDefault();
         const signUp = () => signupUser(userDetails)();
         signUp(); 

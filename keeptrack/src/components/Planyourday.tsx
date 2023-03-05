@@ -116,14 +116,13 @@ const Planyourday: React.FC = () => {
     setIsTimeValid(ValidTime);
     const has_not_passed = !time_or_date_has_passed(date, Time);
     if (activity && date && ValidDate  && has_not_passed && ValidTime) {
-      setActivities(sort_dates([...activities, {id: Date.now(), todo:activity, time: Time, date: date, isCompleted: false}]));
-
       if(firebase.auth().currentUser !== null){ 
         const userRef = firebase.firestore().collection('users').doc(firebase.auth().currentUser!.uid);
         userRef.get().then((doc) => {
           if (doc.exists) {
             const userData = doc.data();
-            const updatedActivities = [...userData?.activities, {id: Date.now(), todo: activity, date: date, time: Time, isCompleted: false}];
+            const updatedActivities = sort_dates(sort_time(sort_alphabeticly(
+              [...userData?.activities, {id: Date.now(), todo: activity, date: date, time: Time, isCompleted: false}])));
             userRef.update({
               activities: updatedActivities
             });
