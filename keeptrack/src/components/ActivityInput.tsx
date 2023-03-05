@@ -17,11 +17,12 @@ interface Properties{
   isTimeValid: boolean
 }
 
-const MAX_LENGTH = 50;
+
 
 const ActivityInput = ({ activity, setActivity, date, setDate, addActivity,
                           isDateValid, inputLength, setInputLength, Time, setTime,
-                            isTimeValid }: Properties) => {
+  isTimeValid }: Properties) => {
+  const MAX_LENGTH = 50;
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputText = e.target.value;
     setInputLength(inputText.length);
@@ -31,8 +32,11 @@ const ActivityInput = ({ activity, setActivity, date, setDate, addActivity,
     <form className="Input" onSubmit={addActivity}>
       <input type="input"
         value={activity}
-        onChange={(e) => setActivity(e.target.value)}
-        placeholder='Enter a task' className="input_activity_field_todo"></input>
+        onChange={handleChange}
+        placeholder='Enter a task' className="input_activity_field_todo">
+        
+        </input>
+      <div className="character-counter">{MAX_LENGTH - inputLength < 1 ? 0 : MAX_LENGTH - inputLength}</div>
       <input
         id="date-input"
         type="input"
