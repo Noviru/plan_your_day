@@ -42,7 +42,7 @@ const Login = () => {
 
   //Uses the built in function signInWithEmailAndPassword with firebase to check the database and if 
   // It is successful we navigate the user to the homepage and send the userdata to it.
-  const handleSubmit = async (event: any) => {
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     setUsername(username);
     setPassword(password); 
