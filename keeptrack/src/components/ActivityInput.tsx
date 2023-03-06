@@ -38,7 +38,7 @@ interface Properties{
 function ActivityInput({ activity, setActivity, date, setDate, addActivity,
                           isDateValid, inputLength, setInputLength, Time, setTime,
   isTimeValid }: Properties) {
-  const MAX_LENGTH = 50;
+  const MAX_LENGTH = 40;
   const handleActivityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const inputText = e.target.value;
     setInputLength(inputText.length);
