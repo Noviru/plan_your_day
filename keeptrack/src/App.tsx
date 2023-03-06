@@ -1,15 +1,14 @@
-import React from 'react';
-import ActivityInput from './components/ActivityInput';
-import { activity,date,user } from './lib/types';
-import {Routes, Route, Router, BrowserRouter} from "react-router-dom";
+import {Routes, Route} from "react-router-dom";
 import Login from "./components/Login";
 import Register from './components/Register';
 import Planyourday from './components/Planyourday';
-import Testdata1 from './components/Register';
 
-
-
-
+/**
+ * Runs the main application
+ *
+ * @returns - a web application that allows a user to log in/sign up and 
+ * access an individual to-do list.
+ */
 function App() {
   return (
     <div className="App">

@@ -2,7 +2,7 @@ import React from 'react'
 import { Activity } from './SingleActivity'
 import SingleActivity from './SingleActivity'
 import './styles.css'
-import { doc, getDoc } from "firebase/firestore";
+import { getDoc } from "firebase/firestore";
 import "firebase/auth";
 import "firebase/database";
 import 'firebase/firestore';
@@ -10,7 +10,6 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/firestore';
 import 'firebase/compat/auth';
 import 'firebase/compat/database'
-import { activity } from '../lib/types';
 import { useEffect } from 'react';
 
 interface Properties{
@@ -18,10 +17,7 @@ interface Properties{
     setActivities: React.Dispatch<React.SetStateAction<Activity[]>>
 }
 
-
-
 const ActivityList: React.FC<Properties>= ({activities, setActivities}: Properties) => {
-
   // Fetches the activites from the database and set the activits variable to the activites in the database.
   useEffect(() => {
     const fetchActivities = async () => {
@@ -36,10 +32,6 @@ const ActivityList: React.FC<Properties>= ({activities, setActivities}: Properti
     };
     fetchActivities();
   }, []);
-  
-
-  //const user_activity = getActivity()
-
   return (
     <div className='todos'>
       {activities.map((activity) => (

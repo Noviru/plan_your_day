@@ -157,8 +157,7 @@ form.activity {
 }
 
 .activity-time {
-    margin-left: auto;
-    margin-right: 15px;
+    margin-left: 15px;
     float: right;
 }
 
@@ -214,8 +213,6 @@ form.activity {
     width: 80%;
     margin: 0 auto 20px auto;
 }
-
-
 
 .login {
     width: 70%;

@@ -5,10 +5,11 @@ import 'firebase/firestore';
 import { signupUser } from '../firebase-setup/firebase';
 import image from "./resources/pyd.png"
 import { useNavigate } from "react-router-dom";
+import { User } from "../firebase-setup/firebase";
 
-const Register = () => {
+const Register : React.FC = () => {
       const navigate = useNavigate();
-      const [userDetails, setUserDetails] = useState({
+      const [userDetails, setUserDetails] = useState<User>({
         username: '',
         email: '',
         password: '',
